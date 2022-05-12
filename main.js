@@ -20,7 +20,47 @@ navbarMenu.addEventListener('click', (event) => {
     if(link == null){
         return;
     }
-    console.log(event.target.dataset.link);
-    const scrollTo = document.querySelector(link);
-    scrollTo.scrollIntoView({behavior: 'smooth'});
+    scrollIntoView(link);
 });
+
+const homeContactBtn = document.querySelector('.home_contact');
+homeContactBtn.addEventListener('click', (event) =>{
+    scrollIntoView('#contact');
+});
+
+
+//Make home slowly fad to transparent as scrolling down//
+const home = document.querySelector('.home_container');
+const homeHeight = home.getBoundingClientRect().height;
+document.addEventListener('scroll', ()=> {
+    home.style.opacity = 1- window.scrollY /homeHeight;
+});
+
+
+
+// show arrow up button when scrolling down//
+const arrowUp = document.querySelector('.arrow-up');
+document.addEventListener('scroll', ()=>{
+    if(window.scrollY > homeHeight/2){
+        arrowUp.classList.add('visible');
+    } else {
+        arrowUp.classList.remove('visible');
+    }
+});
+
+// go up on a arrow up button//
+arrowUp.addEventListener('click', ()=>{
+    scrollIntoView('#home');
+});
+
+
+
+
+function scrollIntoView(selector){
+    const scrollBut = document.querySelector(selector);
+    scrollBut.scrollIntoView({behavior: 'smooth'});
+}
+
+
+
+

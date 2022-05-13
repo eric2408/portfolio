@@ -12,6 +12,9 @@ document.addEventListener('scroll', () => {
 });
 
 
+
+
+
 //handle scrolling when tapping on navbar menu//
 const navbarMenu = document.querySelector('.navbar_menu');
 navbarMenu.addEventListener('click', (event) => {
@@ -20,13 +23,26 @@ navbarMenu.addEventListener('click', (event) => {
     if(link == null){
         return;
     }
+    navbarMenu.classList.remove('open');
     scrollIntoView(link);
 });
+
+
+
+// Navbar toggle
+const navbarToggleBtn = document.querySelector('.navbar_toggle-btn');
+navbarToggleBtn.addEventListener('click', ()=> {
+    navbarMenu.classList.toggle('open');
+});
+
 
 const homeContactBtn = document.querySelector('.home_contact');
 homeContactBtn.addEventListener('click', (event) =>{
     scrollIntoView('#contact');
 });
+
+
+
 
 
 //Make home slowly fad to transparent as scrolling down//
@@ -63,9 +79,16 @@ workBtnContainer.addEventListener('click', (event)=>{
     if(filter== null){
         return;
     }
-    projectContainer.classList.add('anim-out');
+    
+    const active = document.querySelector('.category_btn.selected');
+    active.classList.remove('selected');
+    const target = event.target.nodeName === 'BUTTON' ? event.target : event.target.parentNode; 
+        event.target.classList.add('selected');
     
 
+
+    projectContainer.classList.add('anim-out');
+    
     setTimeout(() => {
         projects.forEach((project) => {
             if(filter === '*' || filter === project.dataset.type){

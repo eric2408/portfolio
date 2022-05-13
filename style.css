@@ -124,15 +124,13 @@ p {
     margin: 0 4px;
     cursor: pointer;
     border-radius: var(--size-border-radius);
+    border: 1px solid transparent;
 }
 
-.navbar_menu_item.active{
-    
-}
 
 .navbar_menu_item:hover {
     background-color: var(--color-dark-pink);
-    border: 1px solid var(--color-white);
+    border-color: var(--color-white);
 }
 
 .navbar_toggle-btn {
@@ -314,13 +312,13 @@ p {
     padding:8px 48px;
 }
 
-.category_btn.active,
+.category_btn.selected,
 .category_btn:hover {
     background-color: var(--color-pink);
     color: var(--color-white);
 }
 
-.category_btn.active .category_count,
+.category_btn.selected .category_count,
 .category_btn:hover .category_count {
     opacity: 1;
     top: 0;
@@ -396,7 +394,7 @@ p {
 }
 
 .project_description h3 {
-    color: var(--color-white);
+    color: var(--color-orange);
 }
 
 .project_description h3:after {
@@ -404,9 +402,9 @@ p {
     display: block;
     position: relative;
     left: 50%;
-    width:25px;
+    width:50px;
     height: 2px;
-    margin-left: -12px;
+    transform:translateX(-50%); 
     margin-top: 8px;
     background-color: var(--color-dark-white);
 }
@@ -474,7 +472,7 @@ p {
 .contact_links {
     font-size: var(--font-large);
     margin: 24px 0;
-    trasition: all var(--animation-duration) ease-in; 
+    transition: all var(--animation-duration) ease-in; 
 }
 
 .contact_links i:hover {
@@ -513,6 +511,11 @@ p {
 #navbar {
     flex-direction: column;
     align-items: flex-start;
+    background-color: var(--color-pink);
+}
+
+#navbar.navbar-dark {
+    padding: 16px;
 }
 
 .navbar_menu{
@@ -521,6 +524,10 @@ p {
     width: 100%;
     display: none;
 } 
+
+.navbar_menu.open {
+    display:block;
+}
 
 .about_majors {
     flex-direction: column;
